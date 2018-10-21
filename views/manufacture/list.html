@@ -1,0 +1,176 @@
+<!-- Preloader -->
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+<!-- /Preloader -->
+<div class="wrapper theme-1-active pimary-color-pink">
+    <!-- Top Menu Items -->
+    {{>header}}
+    <!-- /Top Menu Items -->
+
+    <!-- Left Sidebar Menu -->
+    {{>sidebar}}
+    <!-- /Left Sidebar Menu -->
+
+
+
+
+
+    <!-- Main Content -->
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h5 class="txt-dark">Manufacture</h5>
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+
+                        <li><a href="/">Dashboard</a></li>
+                        <li class="active"><span>Manufacture</span></li>
+
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+            </div>
+            <!-- /Title -->
+
+            <!-- Row -->
+            <div class="row">
+
+                <!-- Basic Table -->
+                <div class="col-sm-12">
+                    <div class="panel panel-default card-view">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <h6 class="panel-title txt-dark">List Manufacture</h6>
+                            </div>
+
+                            <div class="pull-right">
+                                <a href="/manufacture/add"><div class="pull-left"><i class="fa fa-plus-square mr-5"></i><span class="right-nav-text">New</span></div></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+
+                                <div class="table-wrap mt-0">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0" id="TableData">
+                                            <thead>
+                                            <tr>
+
+                                                <th>Name</th>
+
+                                                <th class="text-nowrap" width="6%">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            {{#each data }}
+
+                                            <tr id="{{this._id}}">
+
+                                                <td>{{this.manufactureName}}</td>
+                                                <td class="text-nowrap">
+
+                                                    <a href="/manufacture/edit/{{this._id}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                        <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+
+                                                    <a href="#" data-toggle="tooltip" data-original-title="Close" onclick="DeleteItem('{{this._id}}');">
+                                                        <i class="fa fa-close text-danger"></i> </a> </td>
+                                            </tr>
+
+                                            {{else}}
+
+                                            <tr id="0">
+                                                <td colspan="2" align="center">No data found</td>
+                                            </tr>
+
+                                            {{/each}}
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Basic Table -->
+
+            </div>
+            <!-- /Row -->
+
+
+
+        </div>
+
+        {{>footer}}
+
+    </div>
+    <!-- /Main Content -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- JavaScript -->
+
+<!-- jQuery -->
+
+<script type="text/javascript">
+
+    function DeleteItem(id){
+
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#f8b32d",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel !",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: 'manufacture/'+id,
+                    type: 'delete',
+                    success: function(data) {
+
+                        console.log(data);
+                        if(data == true)
+                        {
+                            //$('table#TableData tr#'+id).remove();
+                            $('table#TableData tr#'+id).hide('slow', function(){ $('table#TableData tr#'+id).remove(); });
+                            swal("Deleted!", "Your file has been deleted.", "success");
+                        }
+                        else
+                        {
+                            swal("Cancelled", "Your file is safe :)", "error");
+                        }
+
+                    },
+                    error: function(xhr, desc, err) {
+                        console.log(xhr);
+                        console.log("Details: " + desc + "\nError:" + err);
+                    }
+                }); // end ajax call
+
+            } else {
+                swal("Cancelled", "Your file is safe :)", "error");
+            }
+        });
+
+    }
+
+</script>

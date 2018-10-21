@@ -1,0 +1,94 @@
+<!-- Footer -->
+<footer class="footer container-fluid pl-30 pr-30">
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Powered by suhail</p>
+        </div>
+    </div>
+</footer>
+<!-- /Footer -->
+<script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Toast JavaScript -->
+<script src="/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+
+<!-- Init JavaScript -->
+<script src="/dist/js/init.js"></script>
+
+<script type="text/javascript">
+    let jsonMsgInfo = '{{{infoMsg}}}';
+    //console.log(jsonMsgInfo);
+
+    try{
+        let infoMsg = JSON.parse('{{{infoMsg}}}');
+        infoMsgFunction(infoMsg);
+    } catch(e){
+
+    }
+
+
+    function infoMsgFunction(infoMsg){
+        let MsgCode = infoMsg.code;
+        let MsgTitle = infoMsg.title;
+        let MsgContent = infoMsg.content;
+
+        if(MsgCode == 'error')
+        {
+            $.toast().reset('all');
+            $("body").removeAttr('class');
+            $.toast({
+                heading: MsgTitle,
+                text: MsgContent,
+                position: 'top-right',
+                loaderBg:'#fec107',
+                icon: 'error',
+                hideAfter: 10000
+            });
+        }
+        else if(MsgCode == 'success')
+        {
+            $.toast().reset('all');
+            $("body").removeAttr('class');
+            $.toast({
+                heading: MsgTitle,
+                text: MsgContent,
+                position: 'top-right',
+                loaderBg:'#fec107',
+                icon: 'success',
+                hideAfter: 10000,
+                stack: 6
+            });
+        }
+        else if(MsgCode == 'warning')
+        {
+            $.toast().reset('all');
+            $("body").removeAttr('class');
+            $.toast({
+                heading: MsgTitle,
+                text: MsgContent,
+                position: 'top-right',
+                loaderBg:'#ff2a00',
+                icon: 'warning',
+                hideAfter: 10000,
+                stack: 6
+            });
+        }
+        else if(MsgCode == 'info')
+        {
+            $.toast().reset('all');
+            $("body").removeAttr('class');
+            $.toast({
+                heading: MsgTitle,
+                text: MsgContent,
+                position: 'top-right',
+                loaderBg:'#fec107',
+                icon: 'info',
+                hideAfter: 10000,
+                stack: 6
+            });
+        }
+    }
+
+
+
+</script>
+
