@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const Config = require('config');
 
 
-module.exports = function() {
+
     let dbName = process.env.DATABASE || Config.DB['DATABASE'] || 'psa';
     let dbUsername = process.env.DB_USERNAME || Config.DB['USERNAME'] || 'root';
     let dbPassword = process.env.DB_PASSWORD || Config.DB['PASSWORD'] || null;
@@ -38,4 +38,6 @@ module.exports = function() {
         .catch(function (err) {
             console.log('Unable to connect to the database:', err);
         });
-}
+
+
+module.exports = db;

@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 
-require('./startup/db')();
+require('./startup/db');
 require('./startup/handlebars')(app);
 require('./startup/session')(app);
 require('./startup/routes')(app);

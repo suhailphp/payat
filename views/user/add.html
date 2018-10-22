@@ -1,0 +1,136 @@
+<!-- Preloader -->
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+<!-- /Preloader -->
+<div class="wrapper theme-1-active pimary-color-pink">
+    <!-- Top Menu Items -->
+    {{>header}}
+    <!-- /Top Menu Items -->
+
+    <!-- Left Sidebar Menu -->
+    {{>sidebar}}
+    <!-- /Left Sidebar Menu -->
+
+
+
+
+
+    <!-- Main Content -->
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h5 class="txt-dark">{{#if editData}}Edit{{else}}Add{{/if}} User</h5>
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/user"><span>user</span></a></li>
+                        <li class="active"><span>{{#if editData}}Edit{{else}}Add{{/if}} User</span></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+            </div>
+            <!-- /Title -->
+
+            <!-- Row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default card-view">
+
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="form-wrap">
+                                    <form name="form one" method="post"  action="/user">
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Name</label>
+                                                    <input type="text" name="fullName" id="fullName" required="required" value="{{#if data.fullName}}{{data.fullName}}{{/if}}"
+                                                           placeholder="Enter name" class="form-control" >
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> User Name</label>
+                                                    <input type="text" name="userName" id="userName" required="required" value="{{#if data.userName}}{{data.userName}}{{/if}}"
+                                                           placeholder="Enter user name" class="form-control" >
+                                                </div>
+
+                                                {{#if editData}}
+
+                                                {{else}}
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Password</label>
+                                                    <input type="password" name="password" id="password" required="required" value="{{#if data.password}}{{data.password}}{{/if}}"
+                                                           placeholder="Enter password" class="form-control" >
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Confirm</label>
+                                                    <input type="password" name="confirm" id="confirm" required="required" value="{{#if data.confirm}}{{data.confirm}}{{/if}}"
+                                                           placeholder="Enter password" class="form-control" >
+                                                </div>
+
+                                                {{/if}}
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Mobile</label>
+                                                    <input type="text" name="mobile" id="mobile" required="required" value="{{#if data.mobile}}{{data.mobile}}{{/if}}"
+                                                           placeholder="Enter Mobile" class="form-control" >
+                                                </div>
+
+                                                <br>
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <input type="hidden" name="id" value="{{#if data.id}}{{data.id}}{{/if}}" >
+                                                    <input type="hidden" name="action" value="{{#if editData}}edit{{else}}add{{/if}}" >
+                                                    <button class="btn btn-primary  btn-rounded btn-block btn-anim"><i class="fa fa-check-square"></i>
+                                                        <span class="btn-text">{{#if editData}}Update{{else}}Add {{/if}}</span></button>
+                                                </div>
+
+
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <a class="btn btn-danger  btn-rounded btn-block btn-anim" href="/user"><i class="fa fa-minus-circle"></i><span class="btn-text">Cancel</span></a>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Row -->
+
+
+
+        </div>
+
+        {{>footer}}
+
+    </div>
+    <!-- /Main Content -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- JavaScript -->
+
+<!-- jQuery -->

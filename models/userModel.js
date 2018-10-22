@@ -1,19 +1,26 @@
 /**
  * Created by suhail
  */
-var Sequelize = require('sequelize');
-var db = require('../startup/db');
-var config = require('config');
+const Joi = require("joi");
+const Sequelize = require('sequelize');
+const db = require('../startup/db');
+const config = require('config');
 
-var User = db.define('GMSUsers', {
-    userName: {
-        type: Sequelize.STRING(255),
+let userModel = db.define('users', {
+
+    id:{
+        type: Sequelize.INTEGER,
+        autoIncrement : true,
         unique: 'compositeIndex',
         primaryKey: true
     },
     fullName: {
         type: Sequelize.STRING(255)
-    }
+    },
+    userName: {
+            type: Sequelize.STRING(255),
+            unique: 'compositeIndex'
+        },
     password: {
         type: Sequelize.STRING(1000)
     },
@@ -43,21 +50,20 @@ var User = db.define('GMSUsers', {
     }
 });
 
-module.exports = User;
 
 
 if (config.DB['SYNC']) {
-    User.sync({force: config.DB['SYNC_FORCE']}).then(function () {
+    userModel.sync({force: config.DB['SYNC_FORCE']}).then(function () {
         // Table created
-        return User.findOrCreate({
+        return userModel.findOrCreate({
             where: {
                 userName: 'admin',
             },
             defaults: {
                 fullName: 'Suhail Malayantavida',
                 userName: 'admin',
-                password: "7c337c005fd861d11d45cef7d7e00bc7d4e29f5b2932ea7f7e9cfe9c061944b6eb3027de0c7c77beb82b7919f9137f671a8e499812c76546c9b3085eb4325169",
-                passwordSalt: "a355fa04b0ddeaa6bcb1f8c2d9517049",
+                password: "fc998beddbbf42bc86e052e13a11a2909797639dd1a1e7ff02b2b4c2a74ce49e24f905012ec997d79c28f08e070c0d21d29f5df859ec9179a600e71a2f2a9ad6",
+                passwordSalt: "c393308707a1e6287d9533364ece2965",
                 userRole: "ADMIN",
                 mobile: '+971527947237',
             }
@@ -68,3 +74,33 @@ if (config.DB['SYNC']) {
             });
     });
 }
+
+
+function validate(req){
+    const schema = {
+        userName: Joi.string().min(5).required(),
+        password: Joi.string().min(5).required(),
+        confirm: Joi.string().min(5).required(),
+        fullName: Joi.string().min(5).required(),
+        mobile: Joi.string().min(10).required(),
+        id: Joi.string().allow(''),
+        action: Joi.string().allow('')
+    };
+
+    return Joi.validate(req, schema);
+}
+function validateUpdate(req){
+    const schema = {
+        userName: Joi.string().min(5).required(),
+        fullName: Joi.string().min(5).required(),
+        mobile: Joi.string().min(10).required(),
+        id: Joi.string().allow(''),
+        action: Joi.string().allow('')
+    };
+
+    return Joi.validate(req, schema);
+}
+
+exports.userModel = userModel;
+exports.validate = validate;
+exports.validateUpdate = validateUpdate;
