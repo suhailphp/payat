@@ -1,16 +1,16 @@
 {
-    "BASE_URL": "http://localhost:3000/",
-    "PORT": 3000,
-    "DB": {
-        "DIALECT": "mysql",
-        "DATABASE": "payat",
-        "USERNAME": "root",
-        "PASSWORD": "rootroot",
-        "HOST": "localhost",
-        "PORT": 3306,
-        "SYNC": true,
-        "QUERY_LOG": false,
-        "//": "Do not use this Unless you want to set default values",
-        "SYNC_FORCE": false
-    }
+  "BASE_URL": "http://localhost:3000/",
+  "PORT": 3000,
+  "DB": {
+    "DIALECT": "mysql",
+    "DATABASE": "payat",
+    "USERNAME": "root",
+    "PASSWORD": "rootroot",
+    "HOST": "localhost",
+    "PORT": 3306,
+    "SYNC": true,
+    "QUERY_LOG": false,
+    "//": "Do not use this Unless you want to set default values",
+    "SYNC_FORCE": false
+  }
 }
