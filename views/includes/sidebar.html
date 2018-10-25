@@ -10,203 +10,71 @@
 
         <li>
             <a href="/" >
-            <div class="pull-left"><i class="fa fa-home mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
-        </li>
-
-        <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#order_dr" <?php echo ($PageActive == 'order')?'class="active-page"':'>
-            <div class="pull-left"><i class="fa fa-shopping-cart mr-20"></i><span class="right-nav-text">Order</span></div><div class="pull-right">
-            <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-            <ul id="order_dr" class="collapse collapse-level-1">
-                <li>
-                    <a href="/rder/add"> New Order</a>
-                </li>
-                <li>
-                    <a href="/rder"  >List Order</a>
-                </li>
-
-                <li>
-                    <a href="/rder/completed"  >Completed</a>
-                </li>
-
-
-            </ul>
+                <div class="pull-left"><i class="fa fa-home mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
         </li>
 
 
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#order_manage_dr" <?php echo ($PageActive == 'order_manage')?'class="active-page"':'>
-            <div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Order Manage</span></div><div class="pull-right">
+            <a href="/people" >
+                <div class="pull-left"><i class="fa fa-users mr-20"></i><span class="right-nav-text">Peoples</span></div><div class="clearfix"></div></a>
+        </li>
+
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#product_dr" <?php echo ($PageActive == 'product')?'class="active-page"':' >
+            <div class="pull-left"><i class="fa fa-flask mr-20"></i><span class="right-nav-text">Giving</span></div><div class="pull-right">
             <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-            <ul id="order_manage_dr" class="collapse collapse-level-1">
+            <ul id="product_dr" class="collapse collapse-level-1">
                 <li>
-                    <a href="/order_manage"  >List</a>
+                    <a href="/giving/add" > New</a>
+                </li>
+                <li>
+                    <a href="/giving" >List </a>
                 </li>
 
-                <li>
-                    <a href="/order_manage/stiching"  >Stiching</a>
-                </li>
-
-                <li>
-                    <a href="/order_manage/ready"  >Ready</a>
-                </li>
-
-                <li>
-                    <a href="/order_manage/completed"  >Completed</a>
-                </li>
 
 
             </ul>
         </li>
 
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sales_dr" <?php echo ($PageActive == 'sale')?'class="active-page"':'>
-            <div class="pull-left"><i class="fa fa-shopping-basket mr-20"></i><span class="right-nav-text">Sales</span></div><div class="pull-right">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#getting_dr" <?php echo ($PageActive == 'product')?'class="active-page"':' >
+            <div class="pull-left"><i class="fa fa-shopping-cart mr-20"></i><span class="right-nav-text">Getting</span></div><div class="pull-right">
             <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-            <ul id="sales_dr" class="collapse collapse-level-1">
+            <ul id="getting_dr" class="collapse collapse-level-1">
                 <li>
-                    <a href="/sale/add" >New Sale</a>
+                    <a href="/getting/add" > New</a>
                 </li>
                 <li>
-                    <a href="/sale" >List Sales</a>
+                    <a href="/getting" >List </a>
                 </li>
-                <li>
-                    <a href="#">Sales Retrun</a>
-                </li>
+
+
 
             </ul>
         </li>
 
-        <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#purchse_dr" <?php echo ($PageActive == 'purchase')?'class="active-page"':'>
-            <div class="pull-left"><i class="fa fa-shopping-bag mr-20"></i><span class="right-nav-text">Purchase</span></div><div class="pull-right">
-            <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-            <ul id="purchse_dr" class="collapse collapse-level-1">
-                <li>
-                    <a href="/purchase/add" >New Purchase</a>
-                </li>
-                <li>
-                    <a href="/purchase" <?php echo ($SubActive == 'list_purchase')?'class="active-page"':'">List Purchase</a>
-                </li>
-                <li>
-                    <a href="#">Purchase Retrun</a>
-                </li>
-
-            </ul>
-        </li>
 
 
 
 
         <li><hr class="light-grey-hr mb-10"/></li>
         <li class="navigation-header">
-            <span>component</span>
+            <span>C Panel</span>
             <i class="zmdi zmdi-more"></i>
         </li>
 
+        <li>
+            <a href="/user" >
+                <div class="pull-left"><i class="fa fa-user mr-20"></i><span class="right-nav-text">User</span></div><div class="clearfix"></div></a>
+        </li>
+
+        </li>
 
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#service_dr" <?php echo ($PageActive == 'service')?'class="active-page"':'>
-            <div class="pull-left" <?php echo ($PageActive == 'service')?'class="active-page"':'>
-            <i class="fa fa-female mr-20"></i><span class="right-nav-text">Service</span></div><div class="pull-right">
-    <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-    <ul id="service_dr" class="collapse collapse-level-1">
-        <li>
-            <a href="/service/add" > Add Service</a>
+            <a href="#" >
+                <div class="pull-left"><i class="fa fa-database mr-20"></i><span class="right-nav-text">Backup</span></div><div class="clearfix"></div></a>
         </li>
-        <li>
-            <a href="/service" >  List Service</a>
-        </li>
-        <li>
-            <a href="/design/add" > Add Design</a>
-        </li>
-    
-        <li>
-            <a href="/design" >  List Design</a>
-        </li>
-    
+
     </ul>
-    </li>
-    
-    <li>
-        <a href="javascript:void(0);" data-toggle="collapse" data-target="#product_dr" <?php echo ($PageActive == 'product')?'class="active-page"':' >
-        <div class="pull-left"><i class="fa fa-flask mr-20"></i><span class="right-nav-text">Product</span></div><div class="pull-right">
-        <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-        <ul id="product_dr" class="collapse collapse-level-1">
-            <li>
-                <a href="/product/add" > Add Product</a>
-            </li>
-            <li>
-                <a href="/product" >List Product</a>
-            </li>
-    
-            <li>
-                <a href="/category" >  Category</a>
-            </li>
-    
-            <li>
-                <a href="/units" >    Units</a>
-            </li>
-    
-        </ul>
-    </li>
-    
-    <li>
-        <a href="/customer">
-        <div class="pull-left"><i class="fa  fa-group mr-20"></i><span class="right-nav-text">Customers</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    
-    
-    <li>
-        <a href="/supplier">
-        <div class="pull-left"><i class="fa fa-truck mr-20"></i><span class="right-nav-text">Supplier</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    <li>
-        <a href="/staff">
-        <div class="pull-left"><i class="fa fa-user mr-20"></i><span class="right-nav-text">Staffs</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    <li>
-        <a href="/tax" >
-        <div class="pull-left"><i class="fa fa-money mr-20"></i><span class="right-nav-text">Tax</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    
-    <li>
-        <a href="/warehouse">
-        <div class="pull-left"><i class="fa fa-codepen mr-20"></i><span class="right-nav-text">Warehouse</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    <li>
-        <a href="/manufacture">
-        <div class="pull-left"><i class="fa fa-medkit mr-20"></i><span class="right-nav-text">Manufacture</span></div><div class="clearfix"></div></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-    <li><hr class="light-grey-hr mb-10"/></li>
-    <li class="navigation-header">
-        <span>C Panel</span>
-        <i class="zmdi zmdi-more"></i>
-    </li>
-
-<li>
-    <a href="/user" >
-        <div class="pull-left"><i class="fa fa-user mr-20"></i><span class="right-nav-text">User</span></div><div class="clearfix"></div></a>
-</li>
-
-    </li>
-    
-    <li>
-        <a href="#" >
-        <div class="pull-left"><i class="fa fa-database mr-20"></i><span class="right-nav-text">Backup</span></div><div class="clearfix"></div></a>
-    </li>
-
-</ul>
 </div>
+

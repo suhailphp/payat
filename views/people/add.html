@@ -1,0 +1,161 @@
+<!-- Preloader -->
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+<!-- /Preloader -->
+<div class="wrapper theme-1-active pimary-color-pink">
+    <!-- Top Menu Items -->
+    {{>header}}
+    <!-- /Top Menu Items -->
+
+    <!-- Left Sidebar Menu -->
+    {{>sidebar}}
+    <!-- /Left Sidebar Menu -->
+
+
+
+
+
+    <!-- Main Content -->
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h5 class="txt-dark">{{#if editData}}Edit{{else}}Add{{/if}} People</h5>
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/people"><span>people</span></a></li>
+                        <li class="active"><span>{{#if editData}}Edit{{else}}Add{{/if}} People</span></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+            </div>
+            <!-- /Title -->
+
+            <!-- Row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default card-view">
+
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="form-wrap">
+                                    <form name="form one" method="post"  action="/people">
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Name</label>
+                                                    <input type="text" name="name" id="name" required="required" value="{{#if data.name}}{{data.name}}{{/if}}"
+                                                           placeholder="Enter name" class="form-control" >
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> House Name</label>
+                                                    <input type="text" name="houseName" id="houseName"  value="{{#if data.houseName}}{{data.houseName}}{{/if}}"
+                                                           placeholder="Enter house name" class="form-control" >
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Mobile</label>
+                                                    <input type="text" name="mobile" id="mobile" value="{{#if data.mobile}}{{data.mobile}}{{/if}}"
+                                                           placeholder="Enter Mobile" class="form-control" >
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left"> Land Phone</label>
+                                                    <input type="text" name="phone" id="phone" value="{{#if data.phone}}{{data.phone}}{{/if}}"
+                                                           placeholder="Enter Phone number" class="form-control" >
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10 text-left">Address</label>
+                                                    <textarea class="form-control" name="address" placeholder="Enter the address" >{{#if data.address}}{{data.address}}{{/if}}</textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Opening Balance Type</label>
+                                                    <select class="selectpicker" data-style="btn-danger btn-outline" name="type">
+                                                        <option  value="pay" {{#compare trans.type '==' 'pay'}}selected{{/compare}}>Payable</option>
+                                                        <option  value="receive" {{#compare trans.type '==' 'receive'}}selected{{/compare}}>Receivable</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group m-b-0">
+                                                    <label class="control-label mb-10">Opening Balance</label>
+                                                    <input id="amount" type="text" value="{{#if trans.amount}}{{trans.amount}}{{else}}0{{/if}}" name="amount" class=" form-control" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default">
+                                                </div>
+
+                                                <div class="form-group m-b-0">
+                                                    <label class="control-label mb-10">Last Transaction Date</label>
+                                                    <input id="date" type="date" value="{{#if date}}{{date}}{{/if}}" name="date" class="form-control" >
+                                                </div>
+
+
+                                                <br>
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <input type="hidden" name="id" value="{{#if data.id}}{{data.id}}{{/if}}" >
+                                                    <input type="hidden" name="action" value="{{#if editData}}edit{{else}}add{{/if}}" >
+                                                    <button class="btn btn-primary  btn-rounded btn-block btn-anim"><i class="fa fa-check-square"></i>
+                                                        <span class="btn-text">{{#if editData}}Update{{else}}Add {{/if}}</span></button>
+                                                </div>
+
+
+
+
+
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <a class="btn btn-danger  btn-rounded btn-block btn-anim" href="/user"><i class="fa fa-minus-circle"></i><span class="btn-text">Cancel</span></a>
+                                                </div>
+
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Row -->
+
+
+
+        </div>
+
+        {{>footer}}
+
+    </div>
+    <!-- /Main Content -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- JavaScript -->
+
+<!-- jQuery -->

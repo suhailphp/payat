@@ -1,6 +1,3 @@
-/**
- * Created by suhail
- */
 const Joi = require("joi");
 const Sequelize = require('sequelize');
 const db = require('../startup/db');

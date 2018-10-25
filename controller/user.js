@@ -1,14 +1,15 @@
+const auth = require('../middleware/auth');
 const crypto = require('crypto');
 const express = require('express');
 const router = express.Router();
 const {userModel,validate,validateUpdate} = require('../models/userModel');
 
-router.get('/',async (req,res)=>{
+router.get('/',auth ,async (req,res)=>{
     let users = await userModel.findAll();
     res.render('user/list',{data:users});
 });
 
-router.get('/add',async (req,res)=>{
+router.get('/add',auth ,async (req,res)=>{
     let data;
     if(req.session.reqBody){
         data = req.session.reqBody;
@@ -17,12 +18,12 @@ router.get('/add',async (req,res)=>{
     res.render('user/add',{data:data});
 });
 
-router.get('/add/:id',async (req,res)=>{
+router.get('/edit/:id',auth ,async (req,res)=>{
     let data = await userModel.findOne({ where: {id: req.params.id }});
     res.render('user/add',{data:data,editData:true});
 });
 
-router.post('/',async (req,res)=>{
+router.post('/',auth ,async (req,res)=>{
 
     //for update
     if(req.body.action == 'edit'){
@@ -30,13 +31,13 @@ router.post('/',async (req,res)=>{
         if (error){
             let ErrMessage = error.details[0].message.replace(/['"]+/g, '');
             req.session.infoMsg = {code:'error',title:'Error',content:ErrMessage}
-            return res.redirect('/user/add/'+req.body.id);
+            return res.redirect('/user/edit/'+req.body.id);
         }
         let user = await userModel.findOne({ where: {userName: req.body.userName , id :{ $ne:req.body.id }} });
         if(user){
             req.session.infoMsg = {code:'error',title:'User name taken',content:'please chose other username'}
             req.session.reqBody = req.body;
-            return res.redirect('/user/add/'+req.body.id);
+            return res.redirect('/user/edit/'+req.body.id);
         }
         user = await userModel.findOne({ where: {id: req.body.id } });
         user.fullName = req.body.fullName;
@@ -95,7 +96,7 @@ router.post('/',async (req,res)=>{
 
 });
 
-router.delete('/:id',async(req,res)=>{
+router.delete('/:id',auth ,async(req,res)=>{
 
     const result = await userModel.destroy({where:{id:req.params.id}});
     if (!result) return res.send(false);
