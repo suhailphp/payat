@@ -87,8 +87,11 @@
                                                 <div class="form-group">
                                                     <label class="control-label mb-10">Opening Balance Type</label>
                                                     <select class="selectpicker" data-style="btn-danger btn-outline" name="type">
-                                                        <option  value="pay" {{#compare trans.type '==' 'pay'}}selected{{/compare}}>Payable</option>
-                                                        <option  value="receive" {{#compare trans.type '==' 'receive'}}selected{{/compare}}>Receivable</option>
+
+                                                        <option  value="receive" {{#compare trans.type '==' 'receive'}}selected{{/compare}}>കൊടുക്കാൻ</option>
+
+                                                        <option  value="pay" {{#compare trans.type '==' 'pay'}}selected{{/compare}}> കിട്ടാൻ</option>
+
                                                     </select>
                                                 </div>
 
@@ -106,7 +109,7 @@
                                                 <br>
 
                                                 <div class="col-sm-4 col-xs-12 mt-15">
-                                                    <input type="hidden" name="id" value="{{#if data.id}}{{data.id}}{{/if}}" >
+                                                    <input type="hidden" name="peopleId" value="{{#if data.peopleId}}{{data.peopleId}}{{/if}}" >
                                                     <input type="hidden" name="action" value="{{#if editData}}edit{{else}}add{{/if}}" >
                                                     <button class="btn btn-primary  btn-rounded btn-block btn-anim"><i class="fa fa-check-square"></i>
                                                         <span class="btn-text">{{#if editData}}Update{{else}}Add {{/if}}</span></button>

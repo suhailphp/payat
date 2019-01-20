@@ -21,9 +21,9 @@ router.get('/add', (req,res)=>{
 });
 
 
-router.get('/edit/:id' ,async (req,res)=>{
-    let data = await peopleModel.findOne({ where: {id: req.params.id }});
-    let trans = await transactionModel.findOne({ where: {peopleId: req.params.id , openingBalance: 1 } });
+router.get('/edit/:peopleId' ,async (req,res)=>{
+    let data = await peopleModel.findOne({ where: {peopleId: req.params.peopleId }});
+    let trans = await transactionModel.findOne({ where: {peopleId: req.params.peopleId , openingBalance: 1 } });
     let date = dateformat(trans.date,"yyyy-mm-dd");
     res.render('people/add',{data:data,trans:trans,editData:true,date:date});
 });
@@ -36,10 +36,10 @@ router.post('/', async (req,res)=>{
         if (error){
             let ErrMessage = error.details[0].message.replace(/['"]+/g, '');
             req.session.infoMsg = {code:'error',title:'Error',content:ErrMessage}
-            return res.redirect('/people/edit/'+req.body.id);
+            return res.redirect('/people/edit/'+req.body.peopleId);
         }
 
-        people = await peopleModel.findOne({ where: {id: req.body.id } });
+        people = await peopleModel.findOne({ where: {peopleId: req.body.peopleId } });
         people.name = req.body.name;
         people.houseName = req.body.houseName;
         people.mobile = req.body.mobile;
@@ -47,7 +47,7 @@ router.post('/', async (req,res)=>{
         people.address = req.body.address;
         let result = await people.save();
         if(result){
-            let trans = await transactionModel.findOne({ where: {peopleId: req.body.id , openingBalance: 1 } });
+            let trans = await transactionModel.findOne({ where: {peopleId: req.body.peopleId , openingBalance: 1 } });
             trans.type = req.body.type;
             trans.amount = req.body.amount;
             trans.date = req.body.date;
@@ -88,7 +88,7 @@ router.post('/', async (req,res)=>{
         let people = await  peopleModel.create(model);
         if(people){
             let modelT = {
-                peopleId : people.id,
+                peopleId : people.peopleId,
                 openingBalance : true,
                 type : req.body.type,
                 amount : req.body.amount,
@@ -111,6 +111,17 @@ router.post('/', async (req,res)=>{
         }
 
     }
+});
+
+
+router.delete('/:peopleId' ,async(req,res)=>{
+
+    await transactionModel.destroy({where:{peopleId:req.params.peopleId}});
+    const result = await peopleModel.destroy({where:{peopleId:req.params.peopleId}});
+    if (!result) return res.send(false);
+    res.send(true);
+
+
 });
 
 

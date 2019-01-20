@@ -1,0 +1,31 @@
+<div class="panel panel-default card-view  pa-0">
+    <div class="panel-wrapper collapse in">
+        <div class="panel-body  pa-0">
+            <div class="profile-box">
+
+                <div class="profile-info text-center">
+
+                    <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{data.name}} </h5>
+                    <h6 class="block capitalize-font pb-20">Mobile {{data.mobile}} , Phone {{data.phone}}</h6>
+                </div>
+                <div class="social-info">
+                    <div class="row">
+                        <div class="col-xs-4 text-center">
+                            <span class="counts block head-font"><span class="counter-anim">{{currentBalance}}</span></span>
+                            <span class="counts-text block">{{type}}</span>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <span class="">{{dateToStringDate last.date}}</span>
+                            <span class="counts-text block">Last Payat Date</span>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <span class="counts block head-font"><span class="counter-anim">{{last.amount}}</span></span>
+                            <span class="counts-text block">Last payat Amount</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

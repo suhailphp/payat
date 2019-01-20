@@ -6,7 +6,7 @@ const config = require('config');
 
 let peopleModel = db.define('people', {
 
-    id:{
+    peopleId:{
         type: Sequelize.INTEGER,
         autoIncrement : true,
         unique: 'compositeIndex',
@@ -59,7 +59,7 @@ function validate(req){
         type: Joi.string().allow(''),
         amount: Joi.number().allow(0),
         date: Joi.date().allow(''),
-        id: Joi.string().allow(''),
+        peopleId: Joi.string().allow(''),
         action: Joi.string().allow('')
     };
 

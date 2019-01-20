@@ -31,7 +31,7 @@
 
 
                         <li><a href="/">Dashboard</a></li>
-                        <li class="active"><span>Peoples</span></li>
+                        <li class="active"><span>Giving</span></li>
 
                     </ol>
                 </div>
@@ -47,11 +47,11 @@
                     <div class="panel panel-default card-view">
                         <div class="panel-heading">
                             <div class="pull-left">
-                                <h6 class="panel-title txt-dark">List Peoples</h6>
+                                <h6 class="panel-title txt-dark">Giving</h6>
                             </div>
 
                             <div class="pull-right">
-                                <a href="/people/add"><div class="pull-left"><i class="fa fa-plus-square mr-5"></i><span class="right-nav-text">New</span></div></a>
+                                <a href="/giving/add"><div class="pull-left"><i class="fa fa-plus-square mr-5"></i><span class="right-nav-text">New</span></div></a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -64,9 +64,10 @@
                                             <thead>
                                             <tr>
 
+                                                <th>Date</th>
                                                 <th>Name</th>
-                                                <th>House Name</th>
                                                 <th>Mobile</th>
+                                                <th>Amount</th>
 
 
                                                 <th class="text-nowrap" width="6%">Action</th>
@@ -76,17 +77,19 @@
 
                                             {{#each data }}
 
-                                            <tr id="{{this.peopleId}}">
+                                            <tr id="{{this.id}}">
 
-                                                <td>{{this.name}}</td>
-                                                <td>{{this.houseName}}</td>
-                                                <td>{{this.mobile}}</td>
+                                                <td>{{dateToStringDate this.date}}</td>
+                                                <td>{{this.person.name}}</td>
+
+                                                <td>{{this.person.mobile}}</td>
+                                                <td>{{this.amount}}</td>
                                                 <td class="text-nowrap">
 
-                                                    <a href="/people/edit/{{this.peopleId}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                    <a href="/giving/edit/{{this.id}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                                                         <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
 
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close" onclick="DeleteItem('{{this.peopleId}}');">
+                                                    <a href="#" data-toggle="tooltip" data-original-title="Close" onclick="DeleteItem('{{this.id}}');">
                                                         <i class="fa fa-close text-danger"></i> </a> </td>
                                             </tr>
 
@@ -132,7 +135,7 @@
 
 <script type="text/javascript">
 
-    function DeleteItem(peopleId){
+    function DeleteItem(id){
 
 
         swal({
@@ -148,14 +151,14 @@
         }, function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    url: 'people/'+peopleId,
+                    url: 'giving/'+id,
                     type: 'delete',
                     success: function(data) {
 
                         if(data == true)
                         {
                             //$('table#TableData tr#'+id).remove();
-                            $('table#TableData tr#'+peopleModel).hide('slow', function(){ $('table#TableData tr#'+peopleModel).remove(); });
+                            $('table#TableData tr#'+id).hide('slow', function(){ $('table#TableData tr#'+id).remove(); });
                             swal("Deleted!", "Your file has been deleted.", "success");
                         }
                         else

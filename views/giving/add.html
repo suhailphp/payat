@@ -1,0 +1,178 @@
+<!-- Preloader -->
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+<!-- /Preloader -->
+<div class="wrapper theme-1-active pimary-color-pink">
+    <!-- Top Menu Items -->
+    {{>header}}
+    <!-- /Top Menu Items -->
+
+    <!-- Left Sidebar Menu -->
+    {{>sidebar}}
+    <!-- /Left Sidebar Menu -->
+
+
+
+
+
+    <!-- Main Content -->
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <!-- Title -->
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h5 class="txt-dark">{{#if editData}}Edit{{else}}Add{{/if}} </h5>
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+
+
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/giving"><span>giving</span></a></li>
+                        <li class="active"><span>{{#if editData}}Edit{{else}}Add{{/if}} </span></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+            </div>
+            <!-- /Title -->
+
+            <!-- Row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default card-view">
+
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="form-wrap">
+                                    <form name="form one" method="post"  action="/giving">
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+
+
+                                                <div class="form-group m-b-0">
+                                                    <label class="control-label mb-10">Date</label>
+                                                    <input id="date" type="date" value="{{#if date}}{{date}}{{else}}{{currentDate}}{{/if}}" name="date" class="form-control" >
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">People</label>
+                                                    <select class="selectpicker select2" data-style="btn-danger btn-outline" name="peopleId" required onchange="peopleSelect();" id="peopleId">
+
+
+                                                        <option value="">Chose people</option>
+                                                        {{#each people}}
+                                                        <option value="{{this.peopleId}}" {{#compare this.peopleId '==' ../data.peopleId}}selected{{/compare}}>{{this.name}} {{this.houseName}} {{this.mobile}}</option>
+                                                        {{/each}}
+
+
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group m-b-0">
+                                                    <label class="control-label mb-10">Amount</label>
+                                                    <input required id="amount" type="text" value="{{#if data.amount}}{{data.amount}}{{else}}{{/if}}" name="amount" class=" form-control" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default">
+                                                </div>
+
+
+
+                                                <br>
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <input type="hidden" name="id" value="{{#if data.id}}{{data.id}}{{/if}}" >
+                                                    <input type="hidden" name="action" id="action" value="{{#if editData}}edit{{else}}add{{/if}}" >
+                                                    <button class="btn btn-primary  btn-rounded btn-block btn-anim"><i class="fa fa-check-square"></i>
+                                                        <span class="btn-text">{{#if editData}}Update{{else}}Add {{/if}}</span></button>
+                                                </div>
+
+
+
+
+
+
+                                                <div class="col-sm-4 col-xs-12 mt-15">
+                                                    <a class="btn btn-danger  btn-rounded btn-block btn-anim" href="/giving"><i class="fa fa-minus-circle"></i><span class="btn-text">Cancel</span></a>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="col-sm-6" id="peopleDet">
+
+
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Row -->
+
+
+
+        </div>
+
+        {{>footer}}
+
+    </div>
+    <!-- /Main Content -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- JavaScript -->
+
+<!-- jQuery -->
+
+<script type="text/javascript">
+
+
+
+    $(".select2").select2();
+
+    //.for edit data
+    $( document ).ready(function() {
+        if($('#action').val() == 'edit'){
+            peopleSelect($('#peopleId').val());
+        }
+
+    });
+
+    function peopleSelect(){
+        let peopleId = $('#peopleId').val();
+
+        $.ajax({
+            url: '/giving/peopleInfo/'+peopleId,
+            type: 'get',
+            success: function(res) {
+                $('#peopleDet').html(res);
+
+            },
+            error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+            }
+        });
+
+    }
+</script>
