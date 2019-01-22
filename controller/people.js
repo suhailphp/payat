@@ -121,7 +121,7 @@ router.delete('/:peopleId' ,async(req,res)=>{
     if (!result) return res.send(false);
     res.send(true);
 
-
+[]
 });
 
 

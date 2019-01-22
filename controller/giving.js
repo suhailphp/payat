@@ -7,7 +7,8 @@ const {transactionModel} = require('../models/transactionModel');
 router.get('/',async (req,res)=>{
     transactionModel.belongsTo(peopleModel, {foreignKey: 'peopleId'});
     let trans = await transactionModel.findAll({where:{type: 'pay',openingBalance: false},
-        include:[{model:peopleModel,required:true}]});
+        include:[{model:peopleModel,required:true}],
+        order: [ [ 'id', 'DESC' ]]});
     res.render('giving/list',{data:trans});
 });
 

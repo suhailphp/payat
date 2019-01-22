@@ -9,6 +9,7 @@ const user = require("../controller/user");
 const people = require("../controller/people");
 const giving = require("../controller/giving");
 const getting = require("../controller/getting");
+const backup = require("../controller/backup");
 
 module.exports = function(app){
 
@@ -22,5 +23,6 @@ module.exports = function(app){
     app.use('/people', people);
     app.use('/giving', giving);
     app.use('/getting', getting);
+    app.use('/backup', backup);
 
 }

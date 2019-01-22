@@ -7,7 +7,8 @@ const {transactionModel} = require('../models/transactionModel');
 router.get('/',async (req,res)=>{
     transactionModel.belongsTo(peopleModel, {foreignKey: 'peopleId'});
     let trans = await transactionModel.findAll({where:{type: 'receive',openingBalance: false},
-        include:[{model:peopleModel,required:true}]});
+        include:[{model:peopleModel,required:true}],
+        order: [ [ 'id', 'DESC' ]]});
     res.render('getting/list',{data:trans});
 });
 
@@ -18,15 +19,32 @@ router.get('/add', async (req,res)=>{
         data = req.session.reqBody;
         req.session.reqBody = {};
     }
+
+    transactionModel.belongsTo(peopleModel, {foreignKey: 'peopleId'});
+    let trans = await transactionModel.findAll({where:{type: 'receive',openingBalance: false},
+        include:[{model:peopleModel,required:true}],
+        limit: 5,
+        order: [ [ 'id', 'DESC' ]]
+    });
+
+
     let people = await peopleModel.findAll();
-    res.render('getting/add',{data,people});
+    res.render('getting/add',{data,people,trans});
 });
 
 
 router.get('/edit/:id',async (req,res)=>{
     let data = await transactionModel.findOne({ where: {id: req.params.id }});
     let people = await peopleModel.findAll();
-    res.render('getting/add',{data:data,people,editData:true});
+
+    transactionModel.belongsTo(peopleModel, {foreignKey: 'peopleId'});
+    let trans = await transactionModel.findAll({where:{type: 'receive',openingBalance: false},
+        include:[{model:peopleModel,required:true}],
+        limit: 5,
+        order: [ [ 'id', 'DESC' ]]
+    });
+
+    res.render('getting/add',{data:data,people,trans,editData:true});
 });
 
 router.post('/', async (req,res)=>{
@@ -42,7 +60,7 @@ router.post('/', async (req,res)=>{
         let result = await trans.save();
         if(result){
             req.session.infoMsg = {code:'success',title:'People updated',content:'Payat updated successfully'};
-            res.redirect('/getting');
+            res.redirect('/getting/add');
 
         }
         else{
@@ -67,7 +85,7 @@ router.post('/', async (req,res)=>{
         if(trans){
 
             req.session.infoMsg = {code:'success',title:'User created',content:'New payat Done'};
-            res.redirect('/getting');
+            res.redirect('/getting/add');
 
         }
         else{

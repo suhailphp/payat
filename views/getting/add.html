@@ -112,7 +112,82 @@
 
 
 
+
+
                                         </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12">
+                                                <br>
+                                                <div class="panel panel-default card-view">
+                                                    <div class="panel-heading">
+                                                        <div class="pull-left">
+                                                            <h6 class="panel-title txt-dark">Last five records</h6>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-wrapper collapse in">
+                                                        <div class="panel-body">
+
+                                                            <div class="table-wrap mt-0">
+                                                                <div class="table-responsive">
+                                                                    <table class="table mb-0" id="TableData">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Date</th>
+                                                                            <th>Name</th>
+                                                                            <th>Mobile</th>
+                                                                            <th>Amount</th>
+
+
+                                                                            <th class="text-nowrap" width="6%">Action</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                        {{#each trans }}
+
+                                                                        <tr id="{{this.id}}">
+
+                                                                            <td>{{dateToStringDate this.date}}</td>
+                                                                            <td>{{this.person.name}}</td>
+
+                                                                            <td>{{this.person.mobile}}</td>
+                                                                            <td>{{this.amount}}</td>
+                                                                            <td class="text-nowrap">
+
+                                                                                <a href="/getting/edit/{{this.id}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                                                    <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+
+                                                                                <a href="#" data-toggle="tooltip" data-original-title="Close" onclick="DeleteItem('{{this.id}}');">
+                                                                                    <i class="fa fa-close text-danger"></i> </a> </td>
+                                                                        </tr>
+
+                                                                        {{else}}
+
+                                                                        <tr id="0">
+                                                                            <td colspan="2" align="center">No data found</td>
+                                                                        </tr>
+
+                                                                        {{/each}}
+
+
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
 
 
 
@@ -175,4 +250,50 @@
         });
 
     }
+
+    function DeleteItem(id){
+
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#f8b32d",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel !",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function(isConfirm){
+            if (isConfirm) {
+                $.ajax({
+                    url: '/getting/'+id,
+                    type: 'delete',
+                    success: function(data) {
+
+                        if(data == true)
+                        {
+                            //$('table#TableData tr#'+id).remove();
+                            $('table#TableData tr#'+id).hide('slow', function(){ $('table#TableData tr#'+id).remove(); });
+                            swal("Deleted!", "Your file has been deleted.", "success");
+                        }
+                        else
+                        {
+                            swal("Cancelled", "Your file is safe :)", "error");
+                        }
+
+                    },
+                    error: function(xhr, desc, err) {
+                        console.log(xhr);
+                        console.log("Details: " + desc + "\nError:" + err);
+                    }
+                }); // end ajax call
+
+            } else {
+                swal("Cancelled", "Your file is safe :)", "error");
+            }
+        });
+
+    }
+
 </script>
