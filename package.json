@@ -22,6 +22,6 @@
     "express-session": "^1.15.6",
     "joi": "^14.0.0",
     "mysql2": "^1.6.1",
-    "sequelize": "^4.41.0"
+    "sequelize": "^5.15.1"
   }
 }
