@@ -5,6 +5,8 @@ const path = require("path");
 const app = express();
 
 
+//some of plugin not have support 
+
 
 app.use('', express.static(path.join(__dirname, 'public')));
 
